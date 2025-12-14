@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devstrum | AI Automation for SMEs & Startups</title>
+    <title>Devstrum | AI Automation Agency for UK SMEs & Startups</title>
+    
     <meta name="title" content="Devstrum | AI Automation for SMEs & Startups">
-    <meta name="description" content="We help SMEs and startups save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.">
-    <meta name="keywords" content="AI automation, business automation, SME automation, WhatsApp automation, AI tools, custom integrations, website development">
+    <meta name="description" content="Devstrum helps UK businesses reduce labour costs and boost revenue. We build custom AI automations, manage websites, and integrate tools like WhatsApp and CRMs.">
+    <meta name="keywords" content="AI automation agency, business automation UK, SME automation, WhatsApp bots, custom AI tools, website maintenance, reduce labour costs">
     <meta name="author" content="Devstrum">
-
+    <meta name="robots" content="index, follow">
+    
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sumanthm18.github.io/devstrum-website/">
-    <meta property="og:title" content="Devstrum | AI Automation for SMEs & Startups">
-    <meta property="og:description" content="We help SMEs and startups save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.">
+    <meta property="og:title" content="Devstrum | AI Automation for SMEs">
+    <meta property="og:description" content="Cut labour costs and scale faster. We build custom AI workflows and manage tech for growing businesses.">
     <meta property="og:image" content="https://sumanthm18.github.io/devstrum-website/og-image.png">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://sumanthm18.github.io/devstrum-website/">
-    <meta property="twitter:title" content="Devstrum | AI Automation for SMEs & Startups">
-    <meta property="twitter:description" content="We help SMEs and startups save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.">
+    <meta property="twitter:title" content="Devstrum | AI Automation for SMEs">
+    <meta property="twitter:description" content="Cut labour costs and scale faster. We build custom AI workflows and manage tech for growing businesses.">
     <meta property="twitter:image" content="https://sumanthm18.github.io/devstrum-website/og-image.png">
 
     <link rel="icon" type="image/png" href="favicon.png">
@@ -40,7 +42,7 @@
             --grey-600: #525252;
             --grey-700: #404040;
             --grey-800: #262626;
-            --accent: #c8c8c8;
+            --accent: #1e3a8a; /* Dark Blue Accent */
             --green: #22c55e;
             --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
             --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
@@ -77,9 +79,9 @@
         }
 
         .headline-accent {
-            color: #1e3a8a; /* Dark blue */
+            color: var(--accent);
             font-family: 'Instrument Serif', serif;
-            font-weight: 600; /* Darker/bolder */
+            font-weight: 600;
             font-style: italic;
         }
 
@@ -213,9 +215,8 @@
             overflow: hidden;
         }
 
-        /* Tactile Click Effect */
         .btn:active {
-            transform: scale(0.96); 
+            transform: scale(0.96);
             box-shadow: none;
         }
 
@@ -321,7 +322,7 @@
             gap: 16px;
         }
 
-        /* Feature Cards Section */
+        /* Feature Cards Grid */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -330,26 +331,20 @@
             perspective: 1000px;
         }
 
-        /* UPDATED CARD STYLES (Linear Style) */
+        /* Card Styles */
         .feature-card {
             background: var(--white);
             border: 1px solid var(--grey-200);
             border-radius: var(--radius-lg);
             padding: 32px;
             position: relative;
-            overflow: hidden; /* Important for the sheen effect */
+            overflow: hidden;
             transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
                         box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                         border-color 0.3s ease;
         }
 
-        .feature-card:hover {
-            border-color: var(--grey-300);
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
-            transform: translateY(-4px) scale(1.01);
-        }
-
-        /* The "Sheen" Flash Effect */
+        /* Sheen Effect */
         .feature-card::after {
             content: '';
             position: absolute;
@@ -373,12 +368,38 @@
             transition: 0.7s ease-in-out;
         }
 
-        .feature-card:nth-child(2) {
-            transform: translateY(-20px);
-        }
+        /* --- DESKTOP LOGIC FOR CARDS (The Swap) --- */
+        @media (min-width: 1024px) {
+            /* Move "Website" to position 1 (Left) */
+            .features-grid .feature-card:nth-child(2) {
+                order: 1;
+                transform: none; /* No default lift */
+            }
 
-        .feature-card:nth-child(2):hover {
-            transform: translateY(-24px) scale(1.01);
+            /* Move "AI" to position 2 (Middle) */
+            .features-grid .feature-card:nth-child(1) {
+                order: 2;
+                transform: translateY(-20px); /* Lift it up */
+                border-color: var(--grey-300);
+                box-shadow: var(--shadow-lg);
+                z-index: 2;
+            }
+
+            /* Keep "Integrations" at position 3 (Right) */
+            .features-grid .feature-card:nth-child(3) {
+                order: 3;
+            }
+
+            /* Hover Effects specific to position */
+            .features-grid .feature-card:nth-child(1):hover {
+                transform: translateY(-24px) scale(1.02); /* Middle card lifts more */
+                box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.15);
+            }
+
+            .features-grid .feature-card:nth-child(2):hover,
+            .features-grid .feature-card:nth-child(3):hover {
+                transform: translateY(-4px) scale(1.01); /* Side cards lift normally */
+            }
         }
 
         .feature-card-icon {
@@ -1084,7 +1105,7 @@
             from {
                 opacity: 0;
                 transform: translateY(30px) scale(0.98);
-                filter: blur(10px); /* Cinematic Blur In */
+                filter: blur(10px);
             }
             to {
                 opacity: 1;
@@ -1095,7 +1116,7 @@
 
         .animate-fade-up {
             animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-            opacity: 0; /* Start hidden */
+            opacity: 0;
         }
 
         /* Scroll Reveal Base Class */
@@ -1257,43 +1278,6 @@
             }
         }
 
-        /* Tablet specific (iPad) */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .container {
-                padding: 0 32px;
-            }
-
-            .hero h1 {
-                font-size: 52px;
-            }
-
-            .hero-subtitle {
-                font-size: 19px;
-                max-width: 600px;
-            }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .feature-card:nth-child(2) {
-                transform: translateY(-10px);
-            }
-
-            .outcomes-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .audience-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .service-content {
-                gap: 50px;
-            }
-        }
-
         /* Small phones */
         @media (max-width: 480px) {
             .hero h1 {
@@ -1389,7 +1373,7 @@
                     Automate your business with AI or get left behind in <span class="headline-accent">2026</span>
                 </h1>
                 <p class="hero-subtitle animate-fade-up delay-1">
-                    We help founders save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.
+                    We help founders save on labour costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.
                 </p>
                 <div class="hero-cta animate-fade-up delay-2">
                     <a href="https://cal.com/sumanth-meenakshi-orhbil/30min" target="_blank" class="btn btn-primary btn-large">Book a Free Automation Audit</a>
@@ -1406,6 +1390,7 @@
         <section class="section" style="padding-top: 0;">
             <div class="container">
                 <div class="features-grid reveal-on-scroll">
+                    
                     <div class="feature-card">
                         <div class="feature-card-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1415,7 +1400,7 @@
                             </svg>
                         </div>
                         <h3>AI-Powered Automation</h3>
-                        <p>Custom workflows using the latest AI tools to eliminate repetitive tasks and save labor costs.</p>
+                        <p>Custom workflows using the latest AI tools to eliminate repetitive tasks and save labour costs.</p>
                         <div class="card-visual">
                             <div class="workflow-diagram">
                                 <div class="workflow-node">Manual Task</div>
@@ -1438,7 +1423,7 @@
                             </svg>
                         </div>
                         <h3>Website Development & Maintenance</h3>
-                        <p>Fast, modern websites that convert—plus ongoing maintenance so you never worry about tech issues.</p>
+                        <p>Fast, modern websites that convert, plus ongoing maintenance so you never worry about tech issues.</p>
                         <div class="card-visual">
                             <div class="check-badge">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -1484,24 +1469,24 @@
                 <div class="audience-grid reveal-on-scroll">
                     <div class="audience-card">
                         <h4>Healthcare Clinics</h4>
-                        <p>Physio, dental, sports rehab—automate appointments and patient engagement</p>
+                        <p>Physio, dental, sports rehab. Automate appointments and patient engagement.</p>
                     </div>
                     <div class="audience-card">
                         <h4>Service Businesses</h4>
-                        <p>Agencies, consultancies, salons—streamline operations with AI</p>
+                        <p>Agencies, consultancies, salons. Streamline operations with AI.</p>
                     </div>
                     <div class="audience-card">
                         <h4>E-commerce & Retail</h4>
-                        <p>Automate customer support, inventory, and order processing</p>
+                        <p>Automate customer support, inventory, and order processing.</p>
                     </div>
                     <div class="audience-card">
                         <h4>Startups & SMEs</h4>
-                        <p>Any business looking to save costs and scale efficiently</p>
+                        <p>Any business looking to save costs and scale efficiently.</p>
                     </div>
                 </div>
 
                 <div class="audience-qualifier">
-                    <p>If you're spending money on repetitive tasks that AI could handle—this is for you.</p>
+                    <p>If you're spending money on repetitive tasks that AI could handle, this is for you.</p>
                 </div>
             </div>
         </section>
@@ -1523,7 +1508,7 @@
                         </div>
                         <div>
                             <h4>Your team is drowning in repetitive work</h4>
-                            <p>Manual data entry, follow-ups, admin tasks—eating up hours every week.</p>
+                            <p>Manual data entry, follow-ups, and admin tasks eating up hours every week.</p>
                         </div>
                     </div>
                     <div class="problem-card">
@@ -1533,7 +1518,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h4>Labor costs keep climbing</h4>
+                            <h4>Labour costs keep climbing</h4>
                             <p>You're hiring more people to handle tasks AI could do faster and cheaper.</p>
                         </div>
                     </div>
@@ -1548,7 +1533,7 @@
                         </div>
                         <div>
                             <h4>Your website is outdated or broken</h4>
-                            <p>Slow, buggy, or just doesn't convert—you know it needs work but don't have time.</p>
+                            <p>Slow, buggy, or just doesn't convert. You know it needs work but don't have time.</p>
                         </div>
                     </div>
                     <div class="problem-card">
@@ -1591,7 +1576,7 @@
                         </svg>
                         <div>
                             <strong>Custom AI workflows</strong>
-                            <span>Automate customer service, data entry, lead qualification, and more</span>
+                            <span>Automate customer service, data entry, lead qualification, and more.</span>
                         </div>
                     </div>
                     <div class="solution-item">
@@ -1600,7 +1585,7 @@
                         </svg>
                         <div>
                             <strong>WhatsApp & email automation</strong>
-                            <span>Respond to customers instantly, 24/7, without hiring more staff</span>
+                            <span>Respond to customers instantly, 24/7, without hiring more staff.</span>
                         </div>
                     </div>
                     <div class="solution-item">
@@ -1609,7 +1594,7 @@
                         </svg>
                         <div>
                             <strong>Website development & maintenance</strong>
-                            <span>Modern, fast websites that convert—plus ongoing support</span>
+                            <span>Modern, fast websites that convert, plus ongoing support.</span>
                         </div>
                     </div>
                     <div class="solution-item">
@@ -1618,7 +1603,7 @@
                         </svg>
                         <div>
                             <strong>Tool integrations</strong>
-                            <span>Connect your CRM, email, calendar, and apps—automate the data flow</span>
+                            <span>Connect your CRM, email, calendar, and apps to automate the data flow.</span>
                         </div>
                     </div>
                     <div class="solution-item">
@@ -1627,7 +1612,7 @@
                         </svg>
                         <div>
                             <strong>AI-powered insights</strong>
-                            <span>Get actionable data from your operations to make smarter decisions</span>
+                            <span>Get actionable data from your operations to make smarter decisions.</span>
                         </div>
                     </div>
                     <div class="solution-item">
@@ -1635,8 +1620,8 @@
                             <path d="M20 6L9 17l-5-5"/>
                         </svg>
                         <div>
-                            <strong>Ongoing optimization</strong>
-                            <span>We monitor, improve, and scale your automations as you grow</span>
+                            <strong>Ongoing optimisation</strong>
+                            <span>We monitor, improve, and scale your automations as you grow.</span>
                         </div>
                     </div>
                 </div>
@@ -1657,7 +1642,7 @@
                                 <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
                             </svg>
                         </div>
-                        <h4>Lower labor costs</h4>
+                        <h4>Lower labour costs</h4>
                         <p>AI handles repetitive work. Your team focuses on high-value tasks.</p>
                     </div>
                     <div class="outcome-card">
@@ -1713,7 +1698,7 @@
                     <div class="step-card">
                         <div class="step-number">3</div>
                         <h4>Deploy, monitor, scale</h4>
-                        <p>We launch, track performance, and optimize continuously so you keep improving.</p>
+                        <p>We launch, track performance, and optimise continuously so you keep improving.</p>
                     </div>
                 </div>
             </div>
@@ -1723,7 +1708,7 @@
             <div class="container">
                 <div class="cta-box">
                     <h2>Ready to stop wasting money on manual work?</h2>
-                    <p>Book a free automation audit. We'll show you exactly where AI can save you time and money—and how to implement it.</p>
+                    <p>Book a free automation audit. We'll show you exactly where AI can save you time and money, and how to implement it.</p>
                     <a href="https://cal.com/sumanth-meenakshi-orhbil/30min" target="_blank" class="btn btn-primary btn-large">Book a Free Automation Audit</a>
                     <p class="cta-note">No commitment. 30-minute call. Specific recommendations for your business.</p>
                 </div>
@@ -1737,7 +1722,7 @@
         <section class="page-header">
             <div class="container">
                 <h1>AI automation that actually <span class="headline-accent">works</span></h1>
-                <p>We build custom AI systems that reduce costs, save time, and help you focus on what matters—growing your business.</p>
+                <p>We build custom AI systems that reduce costs, save time, and help you focus on what matters: growing your business.</p>
             </div>
         </section>
 
@@ -1769,7 +1754,7 @@
                             </ul>
                             <div class="service-impact">
                                 <strong>Business Impact</strong>
-                                <p>Reduce labor costs by 40-60% on repetitive tasks. Free your team to focus on revenue-generating activities.</p>
+                                <p>Reduce labour costs by 40-60% on repetitive tasks. Free your team to focus on revenue-generating activities.</p>
                             </div>
                         </div>
                         <div class="service-visual">
@@ -1790,7 +1775,7 @@
                     <div class="service-content reverse">
                         <div class="service-info">
                             <h3>WhatsApp & Communication Automation</h3>
-                            <p>Respond to customers instantly on WhatsApp, email, and social—24/7, without hiring more staff.</p>
+                            <p>Respond to customers instantly on WhatsApp, email, and social media. 24/7, without hiring more staff.</p>
                             <ul class="service-features">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
@@ -1829,7 +1814,7 @@
                     <div class="service-content">
                         <div class="service-info">
                             <h3>Website Development & Maintenance</h3>
-                            <p>Modern, fast websites that actually convert—plus ongoing maintenance so you never have to worry about tech issues.</p>
+                            <p>Modern, fast websites that actually convert, plus ongoing maintenance so you never have to worry about tech issues.</p>
                             <ul class="service-features">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
@@ -1837,7 +1822,7 @@
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-                                    Mobile-first, conversion-optimized
+                                    Mobile-first, conversion-optimised
                                 </li>
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
@@ -1850,7 +1835,7 @@
                             </ul>
                             <div class="service-impact">
                                 <strong>Business Impact</strong>
-                                <p>Your website becomes a revenue-generating asset that works 24/7—not a maintenance headache.</p>
+                                <p>Your website becomes a revenue-generating asset that works 24/7, not a maintenance headache.</p>
                             </div>
                         </div>
                         <div class="service-visual">
@@ -1913,7 +1898,7 @@
                     <div class="service-content">
                         <div class="service-info">
                             <h3>Industry-Specific Automation</h3>
-                            <p>Specialized automation for healthcare clinics, service businesses, e-commerce, and more.</p>
+                            <p>Specialised automation for healthcare clinics, service businesses, e-commerce, and more.</p>
                             <ul class="service-features">
                                 <li>
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
@@ -1967,7 +1952,7 @@
                     </div>
                     <div class="model-card">
                         <h4>Monthly Growth Partnership</h4>
-                        <p>Ongoing partnership. We monitor, optimize, and expand your automations as your business grows.</p>
+                        <p>Ongoing partnership. We monitor, optimise, and expand your automations as your business grows.</p>
                         <div class="model-best-for">
                             <strong>Best for</strong>
                             <p>Businesses who want continuous improvement and a team managing their AI systems.</p>
@@ -2002,8 +1987,8 @@
             <div class="container">
                 <div class="about-intro">
                     <p>Devstrum is an AI automation partner for SMEs, startups, and growing businesses.</p>
-                    <p>We don't sell software. We build systems—custom AI automations that solve real business problems: high labor costs, manual workflows, outdated websites, and tools that don't talk to each other.</p>
-                    <p>Our work is built around how businesses actually operate. We start with your current workflow, find the inefficiencies, and automate what should never be done manually. We specialize in healthcare automation but work with any business ready to leverage AI in 2026.</p>
+                    <p>We don't sell software. We build systems: custom AI automations that solve real business problems like high labour costs, manual workflows, outdated websites, and tools that don't talk to each other.</p>
+                    <p>Our work is built around how businesses actually operate. We start with your current workflow, find the inefficiencies, and automate what should never be done manually. We specialise in healthcare automation but work with any business ready to leverage AI in 2026.</p>
                 </div>
             </div>
         </section>
@@ -2042,7 +2027,7 @@
                         </svg>
                         <div>
                             <h4>ROI-focused</h4>
-                            <p>We measure success by reduced costs, time saved, and revenue growth—not just features delivered.</p>
+                            <p>We measure success by reduced costs, time saved, and revenue growth, not just features delivered.</p>
                         </div>
                     </div>
                     <div class="why-card">
@@ -2050,7 +2035,7 @@
                             <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
                         </svg>
                         <div>
-                            <h4>Custom, not templates</h4>
+                            <h4>Custom solutions, not templates</h4>
                             <p>Every business is different. We build automations around your specific workflow and needs.</p>
                         </div>
                     </div>
@@ -2063,7 +2048,7 @@
                         </svg>
                         <div>
                             <h4>Ongoing partnership available</h4>
-                            <p>We don't disappear after launch. Growth retainers mean we keep optimizing as you scale.</p>
+                            <p>We don't disappear after launch. Growth retainers mean we keep optimising as you scale.</p>
                         </div>
                     </div>
                     <div class="why-card">
@@ -2074,7 +2059,7 @@
                         </svg>
                         <div>
                             <h4>Website expertise</h4>
-                            <p>We build and maintain modern websites that convert—not just automate backend processes.</p>
+                            <p>We build and maintain modern websites that convert, not just automate backend processes.</p>
                         </div>
                     </div>
                 </div>
@@ -2088,7 +2073,7 @@
                 </div>
 
                 <div class="contact-box">
-                    <p>Book a free 30-minute automation audit. We'll review how your business operates today—and show you where AI automation can help you save time and money.</p>
+                    <p>Book a free 30-minute automation audit. We'll review how your business operates today and show you where AI automation can help you save time and money.</p>
                     <a href="https://cal.com/sumanth-meenakshi-orhbil/30min" target="_blank" class="btn btn-primary btn-large">Book a Free Automation Audit</a>
                     <p class="contact-alt">Prefer to reach out directly? Email us at <a href="mailto:sumanth@devstrum.com">sumanth@devstrum.com</a></p>
                 </div>
@@ -2147,24 +2132,46 @@
         </div>
     </footer>
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Devstrum",
+      "image": "https://sumanthm18.github.io/devstrum-website/og-image.png",
+      "description": "Devstrum helps SMEs reduce labour costs and focus on revenue growth by building custom AI automations and managing websites.",
+      "url": "https://sumanthm18.github.io/devstrum-website/",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "GB"
+      },
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [] 
+    }
+    </script>
+
     <script>
-        // Page navigation
+        // Page navigation logic
         function showPage(pageName) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            
-            // Show selected page
             document.getElementById('page-' + pageName).classList.add('active');
-            
-            // Update nav links
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.classList.remove('active');
             });
             document.getElementById('nav-' + pageName).classList.add('active');
-            
-            // Scroll to top
             window.scrollTo(0, 0);
         }
 
@@ -2186,16 +2193,13 @@
                     const target = document.querySelector(href);
                     if (target) {
                         e.preventDefault();
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
+                        target.scrollIntoView({ behavior: 'smooth' });
                     }
                 }
             });
         });
 
-        // --- NEW ANIMATION SCRIPT ---
-        // Scroll Reveal Observer
+        // --- SCROLL ANIMATION OBSERVER ---
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -2206,12 +2210,11 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Run only once
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
 
-        // Initialize triggers on load
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
                 observer.observe(element);
