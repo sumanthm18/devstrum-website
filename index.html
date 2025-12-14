@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Devstrum | AI Automation for SMEs & Startups</title>
-<meta name="title" content="Devstrum | AI Automation for SMEs & Startups">
-<meta name="description" content="Devstrum helps SMEs automate operations with AI. Save on labor costs, boost revenue, and stay competitive in 2025. Book a free automation audit.">
-<meta name="keywords" content="AI automation, business automation, SME automation, WhatsApp automation, AI tools, custom integrations, website development">
-<meta name="author" content="Devstrum">
+    <title>Devstrum | AI Automation for SMEs & Startups</title>
+    <meta name="title" content="Devstrum | AI Automation for SMEs & Startups">
+    <meta name="description" content="We help SMEs and startups save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.">
+    <meta name="keywords" content="AI automation, business automation, SME automation, WhatsApp automation, AI tools, custom integrations, website development">
+    <meta name="author" content="Devstrum">
 
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="favicon.png">
-<link rel="apple-touch-icon" href="favicon.png">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sumanthm18.github.io/devstrum-website/">
+    <meta property="og:title" content="Devstrum | AI Automation for SMEs & Startups">
+    <meta property="og:description" content="We help SMEs and startups save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.">
+    <meta property="og:image" content="https://sumanthm18.github.io/devstrum-website/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sumanthm18.github.io/devstrum-website/">
+    <meta property="twitter:title" content="Devstrum | AI Automation for SMEs & Startups">
+    <meta property="twitter:description" content="We help SMEs and startups save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.">
+    <meta property="twitter:image" content="https://sumanthm18.github.io/devstrum-website/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -67,9 +81,9 @@
         }
 
         .headline-accent {
-            color: var(--grey-300);
+            color: #1e3a8a; /* Dark blue */
             font-family: 'Instrument Serif', serif;
-            font-weight: 400;
+            font-weight: 600; /* Darker/bolder */
             font-style: italic;
         }
 
@@ -1075,6 +1089,18 @@
             .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .service-content {
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1089,14 +1115,29 @@
 
             .hero {
                 padding: 120px 20px 60px;
+                min-height: 80vh;
             }
 
             .hero h1 {
                 font-size: 36px;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+                line-height: 1.6;
             }
 
             .section {
                 padding: 60px 0;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .section-header p {
+                font-size: 16px;
             }
 
             .features-grid,
@@ -1107,6 +1148,7 @@
             .models-grid,
             .why-grid {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
 
             .feature-card:nth-child(2) {
@@ -1117,6 +1159,10 @@
                 transform: translateY(-4px);
             }
 
+            .feature-card {
+                padding: 24px;
+            }
+
             .service-content {
                 grid-template-columns: 1fr;
                 gap: 32px;
@@ -1124,6 +1170,11 @@
 
             .service-content.reverse {
                 direction: ltr;
+            }
+
+            .service-visual {
+                min-height: 200px;
+                padding: 30px;
             }
 
             .cta-box {
@@ -1139,6 +1190,103 @@
                 flex-direction: column;
                 gap: 16px;
                 text-align: center;
+            }
+
+            .btn-large {
+                padding: 16px 28px;
+                font-size: 15px;
+            }
+
+            .page-header {
+                padding: 140px 20px 60px;
+            }
+
+            .page-header h1 {
+                font-size: 36px;
+            }
+
+            .page-header p {
+                font-size: 16px;
+            }
+        }
+
+        /* Tablet specific (iPad) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .container {
+                padding: 0 32px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .hero-subtitle {
+                font-size: 19px;
+                max-width: 600px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .feature-card:nth-child(2) {
+                transform: translateY(-10px);
+            }
+
+            .outcomes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-content {
+                gap: 50px;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 15px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+
+            .btn-large {
+                padding: 14px 24px;
+                font-size: 14px;
+            }
+
+            .feature-card,
+            .problem-card,
+            .solution-item {
+                padding: 20px;
+            }
+
+            .cta-box {
+                padding: 30px 20px;
+            }
+
+            .cta-box h2 {
+                font-size: 24px;
+            }
+
+            .cta-box p {
+                font-size: 15px;
             }
         }
 
