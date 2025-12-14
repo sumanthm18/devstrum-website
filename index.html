@@ -199,6 +199,10 @@
         }
 
         /* Buttons */
+        .btn:active {
+    transform: scale(0.96); /* Shrinks slightly when clicked */
+    box-shadow: none;
+}
         .btn {
             display: inline-flex;
             align-items: center;
@@ -326,57 +330,47 @@
             perspective: 1000px;
         }
 
-        .feature-card {
-            background: var(--white);
-            border: 1px solid var(--grey-200);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            position: relative;
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
+       .feature-card {
+    background: var(--white);
+    border: 1px solid var(--grey-200);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    position: relative;
+    overflow: hidden; /* Important for the sheen effect */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.3s ease;
+}
 
-        .feature-card:hover {
-            border-color: var(--grey-300);
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-4px);
-        }
+.feature-card:hover {
+    border-color: var(--grey-300);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); /* Softer, deeper shadow */
+    transform: translateY(-4px) scale(1.01);
+}
 
-        .feature-card:nth-child(2) {
-            transform: translateY(-20px);
-        }
+/* The "Sheen" Flash Effect */
+.feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent
+    );
+    transform: skewX(-25deg);
+    pointer-events: none;
+    transition: none;
+}
 
-        .feature-card:nth-child(2):hover {
-            transform: translateY(-24px);
-        }
-
-        .feature-card-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--grey-100);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .feature-card-icon svg {
-            width: 24px;
-            height: 24px;
-            color: var(--grey-600);
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            font-size: 15px;
-            color: var(--grey-500);
-            line-height: 1.6;
-        }
+.feature-card:hover::after {
+    left: 150%;
+    transition: 0.7s ease-in-out;
+}
 
         /* Visual Element in Cards */
         .card-visual {
@@ -1049,16 +1043,31 @@
         }
 
         /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+        filter: blur(10px); /* This is the Apple "Cinematic" secret */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Add these new classes right below the keyframes: */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* "Smooth Physics" easing */
+    will-change: transform, opacity;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
         .animate-fade-up {
             animation: fadeUp 0.6s ease-out forwards;
@@ -1362,7 +1371,7 @@
         <!-- Feature Cards -->
         <section class="section" style="padding-top: 0;">
             <div class="container">
-                <div class="features-grid">
+             <div class="features-grid reveal-on-scroll">
                     <div class="feature-card">
                         <div class="feature-card-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1439,7 +1448,7 @@
                     <h2>Built for businesses that want to <span class="headline-accent">grow smarter</span></h2>
                 </div>
 
-                <div class="audience-grid">
+                <div class="audience-grid reveal-on-scroll">
                     <div class="audience-card">
                         <h4>Healthcare Clinics</h4>
                         <p>Physio, dental, sports rehab—automate appointments and patient engagement</p>
@@ -1471,7 +1480,7 @@
                     <h2>Sound <span class="headline-accent">familiar?</span></h2>
                 </div>
 
-                <div class="problems-grid">
+                <div class="problems-grid reveal-on-scroll">
                     <div class="problem-card">
                         <div class="problem-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -2173,6 +2182,29 @@
             });
         });
     </script>
+/* Add this before the closing </script> tag */
+    
+    // Scroll Reveal Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
 
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // Run only once
+            }
+        });
+    }, observerOptions);
+
+    // Initialize triggers on load
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
+            observer.observe(element);
+        });
+    });
 </body>
 </html>
