@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devstrum | AI Automation Agency for SMEs & Startups</title>
+    <title>Devstrum | AI Automation Agency for UK SMEs & Startups</title>
     
     <meta name="title" content="Devstrum | AI Automation for SMEs & Startups">
-    <meta name="description" content="Devstrum helps businesses reduce labour costs and boost revenue. We build custom AI automations, manage websites, and integrate tools like WhatsApp and CRMs.">
-    <meta name="keywords" content="AI automation agency, business automation, SME automation, WhatsApp bots, custom AI tools, website maintenance, reduce labour costs">
+    <meta name="description" content="Devstrum helps UK businesses reduce labour costs and boost revenue. We build custom AI automations, manage websites, and integrate tools like WhatsApp and CRMs.">
+    <meta name="keywords" content="AI automation agency, business automation UK, SME automation, WhatsApp bots, custom AI tools, website maintenance, reduce labour costs">
     <meta name="author" content="Devstrum">
     <meta name="robots" content="index, follow">
     
@@ -580,6 +580,11 @@
             align-items: center;
             justify-content: center;
             color: var(--grey-500);
+        }
+
+        /* Add flex-1 here to ensure text takes available space */
+        .problem-card > div:last-child {
+            flex: 1;
         }
 
         .problem-card h4 {
@@ -1209,13 +1214,14 @@
             }
 
             .features-grid,
+            /* FORCE 1 COLUMN FOR PROBLEMS GRID ON MOBILE */
             .problems-grid,
             .solutions-list,
             .outcomes-grid,
             .audience-grid,
             .models-grid,
             .why-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important; /* Ensure it is 1 column */
                 gap: 16px;
             }
 
@@ -1275,6 +1281,43 @@
 
             .page-header p {
                 font-size: 16px;
+            }
+        }
+
+        /* Tablet specific (iPad) */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .container {
+                padding: 0 32px;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .hero-subtitle {
+                font-size: 19px;
+                max-width: 600px;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .feature-card:nth-child(2) {
+                transform: translateY(-10px);
+            }
+
+            .outcomes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .audience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .service-content {
+                gap: 50px;
             }
         }
 
