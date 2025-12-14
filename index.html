@@ -9,25 +9,21 @@
     <meta name="keywords" content="AI automation, business automation, SME automation, WhatsApp automation, AI tools, custom integrations, website development">
     <meta name="author" content="Devstrum">
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sumanthm18.github.io/devstrum-website/">
     <meta property="og:title" content="Devstrum | AI Automation for SMEs & Startups">
     <meta property="og:description" content="We help SMEs and startups save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.">
     <meta property="og:image" content="https://sumanthm18.github.io/devstrum-website/og-image.png">
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://sumanthm18.github.io/devstrum-website/">
     <meta property="twitter:title" content="Devstrum | AI Automation for SMEs & Startups">
     <meta property="twitter:description" content="We help SMEs and startups save on labor costs and focus on revenue growth by building custom AI automations, managing your website, and integrating cutting-edge AI tools into your operations.">
     <meta property="twitter:image" content="https://sumanthm18.github.io/devstrum-website/og-image.png">
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -199,10 +195,6 @@
         }
 
         /* Buttons */
-        .btn:active {
-    transform: scale(0.96); /* Shrinks slightly when clicked */
-    box-shadow: none;
-}
         .btn {
             display: inline-flex;
             align-items: center;
@@ -217,6 +209,14 @@
             cursor: pointer;
             transition: all 0.25s ease;
             border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Tactile Click Effect */
+        .btn:active {
+            transform: scale(0.96); 
+            box-shadow: none;
         }
 
         .btn-primary {
@@ -330,47 +330,84 @@
             perspective: 1000px;
         }
 
-       .feature-card {
-    background: var(--white);
-    border: 1px solid var(--grey-200);
-    border-radius: var(--radius-lg);
-    padding: 32px;
-    position: relative;
-    overflow: hidden; /* Important for the sheen effect */
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                border-color 0.3s ease;
-}
+        /* UPDATED CARD STYLES (Linear Style) */
+        .feature-card {
+            background: var(--white);
+            border: 1px solid var(--grey-200);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            position: relative;
+            overflow: hidden; /* Important for the sheen effect */
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        border-color 0.3s ease;
+        }
 
-.feature-card:hover {
-    border-color: var(--grey-300);
-    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); /* Softer, deeper shadow */
-    transform: translateY(-4px) scale(1.01);
-}
+        .feature-card:hover {
+            border-color: var(--grey-300);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+            transform: translateY(-4px) scale(1.01);
+        }
 
-/* The "Sheen" Flash Effect */
-.feature-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-        to right, 
-        transparent, 
-        rgba(255, 255, 255, 0.5), 
-        transparent
-    );
-    transform: skewX(-25deg);
-    pointer-events: none;
-    transition: none;
-}
+        /* The "Sheen" Flash Effect */
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right, 
+                transparent, 
+                rgba(255, 255, 255, 0.5), 
+                transparent
+            );
+            transform: skewX(-25deg);
+            pointer-events: none;
+            transition: none;
+        }
 
-.feature-card:hover::after {
-    left: 150%;
-    transition: 0.7s ease-in-out;
-}
+        .feature-card:hover::after {
+            left: 150%;
+            transition: 0.7s ease-in-out;
+        }
+
+        .feature-card:nth-child(2) {
+            transform: translateY(-20px);
+        }
+
+        .feature-card:nth-child(2):hover {
+            transform: translateY(-24px) scale(1.01);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--grey-100);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .feature-card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--grey-600);
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+            color: var(--grey-500);
+            line-height: 1.6;
+        }
 
         /* Visual Element in Cards */
         .card-visual {
@@ -1042,41 +1079,42 @@
             display: none;
         }
 
-        /* Animations */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.98);
-        filter: blur(10px); /* This is the Apple "Cinematic" secret */
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-    }
-}
-
-/* Add these new classes right below the keyframes: */
-.reveal-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* "Smooth Physics" easing */
-    will-change: transform, opacity;
-}
-
-.reveal-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-        .animate-fade-up {
-            animation: fadeUp 0.6s ease-out forwards;
+        /* ANIMATION KEYFRAMES (Apple Style) */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+                filter: blur(10px); /* Cinematic Blur In */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
         }
 
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
+        .animate-fade-up {
+            animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0; /* Start hidden */
+        }
+
+        /* Scroll Reveal Base Class */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
 
         /* Responsive */
         @media (max-width: 1024px) {
@@ -1311,7 +1349,6 @@
 </head>
 <body>
 
-    <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="container nav-inner">
             <a href="#" class="logo" onclick="showPage('home')">
@@ -1344,10 +1381,8 @@
         </div>
     </nav>
 
-    <!-- PAGE 1: HOME -->
     <div id="page-home" class="page active">
         
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-content">
                 <h1 class="animate-fade-up">
@@ -1368,10 +1403,9 @@
             </div>
         </section>
 
-        <!-- Feature Cards -->
         <section class="section" style="padding-top: 0;">
             <div class="container">
-             <div class="features-grid reveal-on-scroll">
+                <div class="features-grid reveal-on-scroll">
                     <div class="feature-card">
                         <div class="feature-card-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1441,7 +1475,6 @@
             </div>
         </section>
 
-        <!-- Who This Is For -->
         <section class="section audience-section">
             <div class="container">
                 <div class="section-header">
@@ -1473,7 +1506,6 @@
             </div>
         </section>
 
-        <!-- Problems We Solve -->
         <section class="section">
             <div class="container">
                 <div class="section-header">
@@ -1546,7 +1578,6 @@
             </div>
         </section>
 
-        <!-- Solutions -->
         <section class="section" style="background: var(--grey-100);">
             <div class="container">
                 <div class="section-header">
@@ -1612,7 +1643,6 @@
             </div>
         </section>
 
-        <!-- Outcomes -->
         <section class="section">
             <div class="container">
                 <div class="section-header">
@@ -1663,7 +1693,6 @@
             </div>
         </section>
 
-        <!-- How It Works -->
         <section class="section how-section" id="how">
             <div class="container">
                 <div class="section-header">
@@ -1690,7 +1719,6 @@
             </div>
         </section>
 
-        <!-- CTA Section -->
         <section class="section cta-section" id="audit">
             <div class="container">
                 <div class="cta-box">
@@ -1704,10 +1732,8 @@
 
     </div>
 
-    <!-- PAGE 2: SERVICES -->
     <div id="page-services" class="page">
         
-        <!-- Page Header -->
         <section class="page-header">
             <div class="container">
                 <h1>AI automation that actually <span class="headline-accent">works</span></h1>
@@ -1715,11 +1741,9 @@
             </div>
         </section>
 
-        <!-- Services -->
         <section class="section">
             <div class="container">
                 
-                <!-- Service 1 -->
                 <div class="service-category">
                     <div class="service-content">
                         <div class="service-info">
@@ -1762,7 +1786,6 @@
                     </div>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="service-category">
                     <div class="service-content reverse">
                         <div class="service-info">
@@ -1802,7 +1825,6 @@
                     </div>
                 </div>
 
-                <!-- Service 3 -->
                 <div class="service-category">
                     <div class="service-content">
                         <div class="service-info">
@@ -1841,7 +1863,6 @@
                     </div>
                 </div>
 
-                <!-- Service 4 -->
                 <div class="service-category">
                     <div class="service-content reverse">
                         <div class="service-info">
@@ -1888,7 +1909,6 @@
                     </div>
                 </div>
 
-                <!-- Service 5 -->
                 <div class="service-category">
                     <div class="service-content">
                         <div class="service-info">
@@ -1930,7 +1950,6 @@
             </div>
         </section>
 
-        <!-- Engagement Models -->
         <section class="section models-section">
             <div class="container">
                 <div class="section-header">
@@ -1958,7 +1977,6 @@
             </div>
         </section>
 
-        <!-- CTA -->
         <section class="section cta-section">
             <div class="container">
                 <div class="cta-box">
@@ -1971,10 +1989,8 @@
 
     </div>
 
-    <!-- PAGE 3: ABOUT -->
     <div id="page-about" class="page">
         
-        <!-- Page Header -->
         <section class="page-header">
             <div class="container">
                 <h1>Your AI automation <span class="headline-accent">partner</span></h1>
@@ -1982,7 +1998,6 @@
             </div>
         </section>
 
-        <!-- About -->
         <section class="section">
             <div class="container">
                 <div class="about-intro">
@@ -1993,7 +2008,6 @@
             </div>
         </section>
 
-        <!-- Why Devstrum -->
         <section class="section" style="background: var(--grey-100);">
             <div class="container">
                 <div class="section-header">
@@ -2067,7 +2081,6 @@
             </div>
         </section>
 
-        <!-- Contact -->
         <section class="section contact-section" id="contact">
             <div class="container">
                 <div class="section-header">
@@ -2084,7 +2097,6 @@
 
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -2181,30 +2193,31 @@
                 }
             });
         });
+
+        // --- NEW ANIMATION SCRIPT ---
+        // Scroll Reveal Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Run only once
+                }
+            });
+        }, observerOptions);
+
+        // Initialize triggers on load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
+                observer.observe(element);
+            });
+        });
     </script>
-/* Add this before the closing </script> tag */
-    
-    // Scroll Reveal Observer
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target); // Run only once
-            }
-        });
-    }, observerOptions);
-
-    // Initialize triggers on load
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.reveal-on-scroll').forEach((element) => {
-            observer.observe(element);
-        });
-    });
 </body>
 </html>
