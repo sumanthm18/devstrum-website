@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devstrum | AI Automation Agency for UK SMEs & Startups</title>
+    <title>Devstrum | AI Automation Agency for SMEs & Startups</title>
     
     <meta name="title" content="Devstrum | AI Automation for SMEs & Startups">
-    <meta name="description" content="Devstrum helps UK businesses reduce labour costs and boost revenue. We build custom AI automations, manage websites, and integrate tools like WhatsApp and CRMs.">
-    <meta name="keywords" content="AI automation agency, business automation UK, SME automation, WhatsApp bots, custom AI tools, website maintenance, reduce labour costs">
+    <meta name="description" content="Devstrum helps businesses reduce labour costs and boost revenue. We build custom AI automations, manage websites, and integrate tools like WhatsApp and CRMs.">
+    <meta name="keywords" content="AI automation agency, business automation, SME automation, WhatsApp bots, custom AI tools, website maintenance, reduce labour costs">
     <meta name="author" content="Devstrum">
     <meta name="robots" content="index, follow">
     
@@ -1089,6 +1089,7 @@
             border: none;
             cursor: pointer;
             padding: 8px;
+            z-index: 1001;
         }
 
         .mobile-menu-btn span {
@@ -1100,9 +1101,53 @@
             transition: all 0.3s;
         }
 
-        /* Page Navigation */
-        .page-nav {
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
             display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            padding: 80px 24px 40px;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--black);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--grey-500);
+        }
+
+        .mobile-menu .btn {
+            margin-top: 20px;
         }
 
         /* ANIMATION KEYFRAMES (Apple Style) */
@@ -1186,6 +1231,10 @@
                 display: block;
             }
 
+            .nav-cta .btn-primary {
+                display: none;
+            }
+
             .hero {
                 padding: 120px 20px 60px;
                 min-height: 80vh;
@@ -1221,7 +1270,7 @@
             .audience-grid,
             .models-grid,
             .why-grid {
-                grid-template-columns: 1fr !important; /* Ensure it is 1 column */
+                grid-template-columns: 1fr !important;
                 gap: 16px;
             }
 
@@ -1400,13 +1449,21 @@
                 <a href="#contact" class="btn btn-primary btn-small" onclick="showPage('about')">Contact Us</a>
             </div>
 
-            <button class="mobile-menu-btn" aria-label="Menu">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#" onclick="showPage('home'); toggleMobileMenu();">Home</a>
+        <a href="#" onclick="showPage('services'); toggleMobileMenu();">Services</a>
+        <a href="#" onclick="showPage('about'); toggleMobileMenu();">About</a>
+        <a href="https://cal.com/sumanth-meenakshi-orhbil/30min" target="_blank" class="btn btn-primary btn-large">Book an Audit</a>
+    </div>
 
     <div id="page-home" class="page active">
         
@@ -2205,6 +2262,17 @@
     </script>
 
     <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            mobileMenu.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        }
+
+        // Add click event to mobile menu button
+        document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
         // Page navigation logic
         function showPage(pageName) {
             document.querySelectorAll('.page').forEach(page => {
@@ -2214,7 +2282,10 @@
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.classList.remove('active');
             });
-            document.getElementById('nav-' + pageName).classList.add('active');
+            const navLink = document.getElementById('nav-' + pageName);
+            if (navLink) {
+                navLink.classList.add('active');
+            }
             window.scrollTo(0, 0);
         }
 
