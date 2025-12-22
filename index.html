@@ -1315,57 +1315,49 @@
                 transform: translateY(-4px) !important;
             }
 
-            /* FIXED: Ensure problem cards don't span multiple columns */
+ /* ====== MOBILE FIX: Horizontal symmetrical problem cards ====== */
             .problem-card {
                 grid-column: span 1;
-                padding: 32px 24px;
-                gap: 0;
-                min-height: 300px;
+                padding: 28px 24px;
+                gap: 16px;
+                height: 240px;
                 display: flex;
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
-                text-align: center;
-                justify-content: flex-start;
+                text-align: left;
             }
 
             .problem-card > div:last-child {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-
-            .problem-card h4 {
-                font-size: 18px;
-                margin-bottom: 16px;
-                line-height: 1.35;
-                font-weight: 600;
-                text-align: center;
-            }
-
-            .problem-card p {
-                font-size: 15px;
-                line-height: 1.7;
-                color: var(--grey-600);
-                flex: 1;
-                text-align: center;
-                display: flex;
-                align-items: center;
                 justify-content: center;
             }
 
+            .problem-card h4 {
+                font-size: 17px;
+                margin-bottom: 10px;
+                line-height: 1.3;
+                font-weight: 600;
+            }
+
+            .problem-card p {
+                font-size: 14px;
+                line-height: 1.6;
+                color: var(--grey-600);
+            }
+
             .problem-icon {
-                width: 56px;
-                height: 56px;
-                margin-bottom: 20px;
+                width: 52px;
+                height: 52px;
                 flex-shrink: 0;
             }
 
             .problem-icon svg {
-                width: 24px;
-                height: 24px;
+                width: 22px;
+                height: 22px;
             }
+            /* ====== END MOBILE FIX ====== */
 
             .feature-card {
                 padding: 24px;
@@ -1485,62 +1477,24 @@
                 padding: 20px;
             }
 
-            /* Ensure problem card text wraps properly on mobile */
+          /* Keep horizontal layout on small phones too */
             .problem-card {
-                padding: 32px 24px;
-                gap: 0;
-                background: var(--white);
-                border: 1px solid var(--grey-200);
-                min-height: 300px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                justify-content: flex-start;
-            }
-
-            .problem-card:hover {
-                background: var(--grey-50);
-                border-color: var(--grey-300);
-            }
-
-            .problem-card > div:last-child {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
+                height: 240px;
+                padding: 24px 20px;
+                gap: 16px;
             }
 
             .problem-card h4 {
-                font-size: 18px;
-                margin-bottom: 16px;
-                line-height: 1.35;
-                font-weight: 600;
-                text-align: center;
+                font-size: 16px;
             }
 
             .problem-card p {
-                font-size: 15px;
-                line-height: 1.7;
-                color: var(--grey-600);
-                flex: 1;
-                text-align: center;
-                display: flex;
-                align-items: center;
+                font-size: 13px;
             }
 
             .problem-icon {
-                width: 56px;
-                height: 56px;
-                background: var(--grey-100);
-                margin-bottom: 20px;
-                flex-shrink: 0;
-            }
-
-            .problem-icon svg {
-                width: 24px;
-                height: 24px;
+                width: 48px;
+                height: 48px;
             }
 
             .cta-box {
